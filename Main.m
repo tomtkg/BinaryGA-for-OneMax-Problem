@@ -18,14 +18,14 @@ function OneMaxGA(Pram,OneMax)
     for Iteration = 2 : Pram.MaxIteration
         Parents = randi([Pram.ChildSize+1 Pram.PopSize], Pram.ChildSize, 1);
         Pop.Gene(1 : Pram.ChildSize, :) = Pop.Gene(Parents, :);
-        for k = 1 : 2 : Pram.ChildSize
+        for i = 1 : 2 : Pram.ChildSize
             Flag = rand(Pram.Dim,1) < Pram.Crossover;
-            Pop.Gene([k k+1], Flag) = Pop.Gene([k+1 k], Flag);
+            Pop.Gene([i i+1], Flag) = Pop.Gene([i+1 i], Flag);
         end
-        for k = 1 : Pram.ChildSize
-            Flag = Pop.Gene(k, :);
-            Pop.Gene(k, Flag) = Mutation(Pop.Gene(k, Flag), Pram.Mutation);
-            Pop.Gene(k,~Flag) = Mutation(Pop.Gene(k,~Flag), Pram.Mutation);
+        for i = 1 : Pram.ChildSize
+            Flag = Pop.Gene(i, :);
+            Pop.Gene(i, Flag) = Mutation(Pop.Gene(i, Flag), Pram.Mutation);
+            Pop.Gene(i,~Flag) = Mutation(Pop.Gene(i,~Flag), Pram.Mutation);
         end
         Pop.Fitness(1 : Pram.ChildSize) = OneMax(Pop.Gene(1 : Pram.ChildSize, :));
         Pop = sortrows(Pop, 'Fitness');
