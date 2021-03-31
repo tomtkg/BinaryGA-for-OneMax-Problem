@@ -3,4 +3,4 @@
 
 * Matlab: 40 lines
 * C#: 99 lines
-* Go: 112 lines
+* Go: 111 lines

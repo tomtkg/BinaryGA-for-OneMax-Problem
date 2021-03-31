@@ -8,19 +8,19 @@ import (
 	"time"
 )
 
-type Solution struct {
+type Individual struct {
 	fitness int
 	gene    []bool
 }
 
-func makePopulation(genes [][]bool) []Solution {
-	pop := make([]Solution, len(genes))
+func makePopulation(genes [][]bool) []Individual {
+	pop := make([]Individual, len(genes))
 	for i, v := range genes {
-		pop[i] = Solution{fitness: oneMax(v), gene: v}
+		pop[i] = Individual{fitness: oneMax(v), gene: v}
 	}
 	return pop
 }
-func oneMax(gene []bool) int {
+func onemax(gene []bool) int {
 	count := 0
 	for _, v := range gene {
 		if v {
@@ -53,7 +53,6 @@ func onemaxGA(param map[string]int) {
 	pop := makePopulation(firstGenes)
 	sort.Slice(pop, func(i, j int) bool { return pop[i].fitness > pop[j].fitness })
 	fmt.Println(pop[0].fitness)
-
 	for iteration := 2; iteration < param["maxIteration"]; iteration++ {
 		genes := make([][]bool, param["childSize"])
 		for i := 0; i < param["childSize"]; i += 2 {
