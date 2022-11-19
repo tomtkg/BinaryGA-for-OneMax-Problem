@@ -16,7 +16,7 @@ type Individual struct {
 func makePopulation(genes [][]bool) []Individual {
 	pop := make([]Individual, len(genes))
 	for i, v := range genes {
-		pop[i] = Individual{fitness: oneMax(v), gene: v}
+		pop[i] = Individual{fitness: onemax(v), gene: v}
 	}
 	return pop
 }
